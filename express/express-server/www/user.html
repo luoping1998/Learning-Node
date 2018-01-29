@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>User</title>
+	<meta charset="utf-8">
+	<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+	<script>
+ 		window.onload=function(){
+ 			$('#reg').click(function(){
+	 			$.ajax({
+		        type:"get",
+		        url:"/user",
+		        data:{act:'reg',user:$('#user')[0].value,pass:$('#pass')[0].value},
+		        success:function (json){
+		          	var data = JSON.parse(json);
+		           	console.log(data);
+		            if(data.ok){
+		                alert('注册成功');
+		            }else{
+		               	alert('注册失败：'+data.msg);
+		            }
+		        },
+		        error:function (json) {
+		            alert('通讯异常！');
+		        }
+		       	})
+ 			})
+
+ 			$('#login').click(function(){
+	 			$.ajax({
+	            type:"get",
+	            url:"/user",
+	            data:{act:'login',user:$('#user')[0].value,pass:$('#pass')[0].value},
+	            success:function (json){
+	            	var data = JSON.parse(json);
+	            	console.log(data);
+	                if(data.ok){
+	                    alert('登录成功');
+	                }else{
+	                	alert('登录失败：'+data.msg);
+	                }
+	            },
+	            error:function (json) {
+	                alert('通讯异常！');
+	            }
+	       		});
+	 		})
+ 		}
+ 	</script>
+</head>
+<body>
+	用户名：<input type="text" id="user"/><br/>
+	密码：<input type="password" id="pass"/><br/>
+	<input type="button" id="reg" value="注册"/>
+	<input type="button" id="login" value="登录"/>
+</body>
+</html>
