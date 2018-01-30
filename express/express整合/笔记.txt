@@ -1,0 +1,47 @@
+body-parser	解析post数据
+		application/x-www-form-urlencoded
+server.use(bodyParser.urlencoded());
+	req.body;
+
+--------------------------------------------------------------------------------------------------------------------
+
+multer		解析post文件
+		multipart/form-data
+var obj = require('multer')({dest:'存储路径'});
+server.use(obj.any());
+
+server.use(function(req,res){
+	req.files[0].originalname
+	req.files[0].path
+})
+
+--------------------------------------------------------------------------------------------------------------------
+
+path对象：
+const path = require('path');	//引入
+var obj = path.parse('路径');	//解析路径
+
+/*obj:
+{
+	dir:路径,
+	base:文件名部分,
+	ext:扩展名,
+	name:文件名
+
+}*/
+
+-------------------------------------------------------------------------------------------------------------------
+
+files对象：
+/*
+	files:
+	{
+	filename:'',
+	originalname:'文件名',
+	encoding:'编码',
+	mimetype:'类型',
+	buffer:'磁盘',
+	size:'大小'
+	
+	}
+*/
