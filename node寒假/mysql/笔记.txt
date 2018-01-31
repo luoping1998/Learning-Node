@@ -1,0 +1,25 @@
+
+1.连接
+var db = mysql.createConnection({host:'',port:'',user:'',password:'',database:''});
+
+2.查询
+db.query(SQL语句,function(err,data){
+	//...
+});
+
+sql语句：
+
+添加：INSERT
+INSERT INTO 表 （字段列表） VALUES(值列表)
+INSERT INTO userdata (id,user,password) VALUES(0,str1,str2);
+
+删除：DELETE
+
+修改：UPDATE
+
+查询：SELECT 什么 FROM `表` 
+
+——————————————————————————————————————-————
+
+
+
