@@ -14,12 +14,36 @@ INSERT INTO 表 （字段列表） VALUES(值列表)
 INSERT INTO userdata (id,user,password) VALUES(0,str1,str2);
 
 删除：DELETE
+DELETE FROM 表 WHERE 列名称 = 值;(删除列名称为值的一行)
+在不删除表的情况下删除所有行，表的结构属性索引是完整的。
 
 修改：UPDATE
+UPDATE 表 SET 列名称 = 新值 WHERE 列名称 = 某值;（替换列名称为某值为新值）
 
-查询：SELECT 什么 FROM `表` 
+查询：SELECT ss FROM `表`; 
 
 ——————————————————————————————————————-————
+
+WHERE【筛选】:
+	SELECT sth FROM stable WHERE ss=3;（筛选出ss等于3的sth）
+	
+	= 、 > 、< 、 <> 、 >=  、<=  、BETWEEN  、 LIKE 
+
+	WHERE ss LIKE '%N' 选出ss以N结尾的
+	WHERE ss LIKE 'N%' 选出ss以N开头的
+	WHERE ss BETWEEN V1(包括) AND V2（不包括） （选出ss在[V1,V2)之间的）
+	
+
+
+ORDER【排序】:
+	SELECT * FROM stable ORDER BY ss;(按ss的顺序排序出来) DESC顺序 、 ASC逆序。
+
+GROUP【合并】:
+	GROUP BY ss;(按照ss特性合并)
+
+LIMITE【限制】:
+	LIMITE num;	限制输出num个数据；
+	LIMITE start num ;	限制输出从start开始，num个数据;
 
 
 
