@@ -27,29 +27,29 @@ var userLogin = function(username,password,verCode,session,callback){
 	}
 
 	request(options,function(err, res, body){
-		var result = null;
+		var reObj = null;
 		if(!err&&(body.indexOf('Object moved')!==-1)){
-			result={
+			reObj={
 				error:false,
-				result:'登录成功！'
+				result:'login success'
 			};
 		}else if(body.indexOf('Object moved')===-1){
 			var html = iconv.decode(body,'gb2312').toString();		//防止中文乱码
 			var $ = cheerio.load(html);		//加载html
-			var reason = $('script');	//取script标签
-			reason = reason[reason.length-1].children[0].data;
-			reason = reason.substring(reason.indexOf('(')+2,reason.indexOf(')')-1);
-			result={
+			var result = $('script');	//取script标签
+			result = result[result.length-1].children[0].data;
+			result = result.substring(reason.indexOf('(')+2,reason.indexOf(')')-1);
+			reObj={
 				error:true,
-				result:reason
+				result:result
 			}
 		}else{
-			result={
+			reObj={
 				error:true,
-				result:'未知错误！'
+				result:'error unexpected'
 			}
 		}
-		callback(result);
+		callback(reObj);
 	});
 }
 
