@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>西邮移动应用开发实验室报名主页</title>
+	<meta charset="utf-8"/>
+</head>
+<body>
+	<form action="http://localhost:8080/login" method="post">
+		<input type="text" name="id"/><br/>
+		<input type="password" name="pass"><br/>
+		<input type="text" name="vcode">
+		<input type="text" name="sess" value="<%= sess %>">
+		<img src="<%= src %>"><br/>
+		<input type="submit" value="登录"/>
+	</form>
+</body>
+</html>
