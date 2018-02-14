@@ -3,8 +3,10 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');	
 var getImg = require('./users/crawl_img');
 var logIn = require('./users/login');
-var change = require('./libs/change');
-var err ,data;
+var getInfor = require('./users/getInfor');
+var change = require('./users/change');
+var err ,data,infor;
+var session ,username;
 
 var server = express();
 server.listen(8080);
@@ -23,20 +25,29 @@ server.post('/login',function (req, res) {
 	req.on('data',function(buf){
 		buf = decodeURIComponent(buf);
 		var arr = buf.split('&');
-		var username = change.chOthers(''+arr[0].split('='));
+		username = change.chOthers(''+arr[0].split('='));
 		var password = change.chOthers(''+arr[1].split('='));
 		var verCode = change.chOthers(''+arr[2].split('='));
 		
 		var sess = arr[3].split('=');
-		var session = ''+sess;
-		var session = change.chSession(session);
+		session = ''+sess;
+		session = change.chSession(session);
 		var result;
 
 	logIn(username,password,verCode,session,
 		function(result){
-			console.log(result);
-			
+			if(result.err){
+				console.log(result.result);
+			}else{
+				console.log(result.result);
+			}
 		});
+	})
+});
+
+server.get('/infor',function (req, res) {
+	getInfor(username,session,function(infor){
+		console.log(infor);
 	})
 })
 
