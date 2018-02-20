@@ -1,5 +1,4 @@
 var request = require('request');
-var fs = require('fs');
 
 var getImg = function(callback){
 	var url = 'http://222.24.62.120/CheckCode.aspx';
@@ -14,8 +13,9 @@ var getImg = function(callback){
 	};
 
 	request(options,function (err, res, body) {
+		console.log('crawl:'+body+'\n');
 		if(err){
-			callback('Server error!');
+			callback('Server error!'+err);
 			return;
 		}
 		var session = res.headers['set-cookie'][0];		//获取cookies
@@ -26,6 +26,7 @@ var getImg = function(callback){
 		}
 		var imgBuf = body.toString('base64');
 		imgBuf = "data:image/Gif;base64," + imgBuf;
+
 		callback(false, {
 	    	'session' : session,
 	    	'imgCode' : imgBuf
@@ -37,6 +38,7 @@ module.exports=getImg;
 
 /*
 callback(err,data);
+
 err:错误
 data:返回的内容
 */

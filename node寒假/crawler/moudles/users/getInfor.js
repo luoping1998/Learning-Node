@@ -21,28 +21,27 @@ var getInfor = function(username,session,callback){
 			var html = iconv.decode(body,'gb2312').toString();
 			var $ = cheerio.load(html);
 			
-			var xh = $('#xh').text();				//学号
-			var xm = $('#xm').text();				//姓名
-			var xy = $('#lbl_xy').text();			//学院
-			var zy = $('#lbl_zymc').text();			//专业
-			var bj = $('#lbl_xzb').text();			//班级
-			var nj = $('#lbl_dqszj').text();		//级
+			// var xh = $('#xh').text();				//学号
+			// var xm = $('#xm').text();				//姓名
+			// var xy = $('#lbl_xy').text();			//学院
+			// var zy = $('#lbl_zymc').text();			//专业
+			// var bj = $('#lbl_xzb').text();			//班级
+			// var nj = $('#lbl_dqszj').text();		//级
 
 			infor = {
-				error:false,
-				data:{
-					xh : xh,
-					xm : xm,
-					xy : xy,
-					zy : zy,
-					bj : bj,
-					nj : nj
-				}
+				'error':false,
+				'xh' : $('#xh').text(),
+				'xm' : $('#xm').text(),
+				'xy' : $('#lbl_xy').text(),
+				'zy' : $('#lbl_zymc').text(),
+				'bj' : $('#lbl_xzb').text(),
+				'nj' : $('#lbl_dqszj').text()
+				
 			}
 		}else{
 			infor = {
-				error : true,
-				data: err
+				'error' : true,
+				'data': err
 			}
 		}
 		callback(infor);

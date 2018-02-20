@@ -38,7 +38,7 @@ var userLogin = function(username,password,verCode,session,callback){
 			var $ = cheerio.load(html);		//加载html
 			var result = $('script');	//取script标签
 			result = result[result.length-1].children[0].data;
-			result = result.substring(reason.indexOf('(')+2,reason.indexOf(')')-1);
+			result = result.substring(result.indexOf('(')+2,result.indexOf(')')-1);
 			reObj={
 				error:true,
 				result:result
@@ -49,6 +49,7 @@ var userLogin = function(username,password,verCode,session,callback){
 				result:'error unexpected'
 			}
 		}
+		console.log('resobj:'+reObj.result);
 		callback(reObj);
 	});
 }
