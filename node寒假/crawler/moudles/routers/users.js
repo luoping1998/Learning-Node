@@ -4,13 +4,21 @@ var router = express.Router();
 var getImg = require('../users/crawl_img');
 var logIn = require('../users/login');
 var getInfor = require('../users/getInfor');
+var signUp = require('../users/add_infor')
 var change = require('../libs/change');
-
-const cookieParser = require('cookie-parser');
-const bodyParser = require('body-parser');	
 
 var err,data,infor;
 var session,username;
+
+//设置响应头
+router.all('*', function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "X-Requested-With");
+    res.header("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
+    res.header("X-Powered-By",' 3.2.1')
+    res.header("Content-Type", "application/json;charset=utf-8");
+    next();
+});
 
 router.get('/vcode',function(req, res){
 	getImg(function(err,data){
@@ -39,22 +47,14 @@ router.post('/login',function(req, res){
 	var vcode = req.body.verCode;
 	var session = req.body.session; 
 	var result = null;
-
 	logIn(username,password,vcode,session,
 		function(result){
 			console.log(result);
 			if(result.error){
-				var _callback = req.query.callback;
-				var _data = null;
-				_data = result ;
-				res.type('text/javascript');
-				res.send(_callback + '(' +JSON.stringify(_data) +')');
 				res.send(result);
 			}else{
 				getInfor(username,session,function(infor){
 					console.log(infor);
-					console.log(typeof(infor));
-					var _callback = req.query.callback;
 					var _data = null;
 					if(err){
 						_data = {
@@ -63,13 +63,19 @@ router.post('/login',function(req, res){
 					} else{
 						_data = infor;
 					}
-					res.type('text/javascript');
-					res.send(_callback + '(' +JSON.stringify(_data) +')');
-					//res.send(infor);
+					res.send(infor);
 
 				})
 			}
 		})
+})
+
+router.post('/sign_up',function(req, res){
+	console.log('sign up');
+	signUp(req.body.group, req.body.infor, function(result){
+		console.log(result);
+		res.send(result);
+	});
 })
 
 module.exports = router;
