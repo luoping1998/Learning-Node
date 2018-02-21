@@ -1,10 +1,16 @@
 const express = require('express');
 var router = express.Router();
 
+var mysql = require('mysql');
+var db = mysql.createConnection({host:'localhost',user:'root',password:'luo...1998ping',database:'freshinfor'});
+
 var getImg = require('../users/crawl_img');
 var logIn = require('../users/login');
 var getInfor = require('../users/getInfor');
-var signUp = require('../users/add_infor')
+
+var addInfor = require('../mysql/add_infor');
+var existInfor = require('../mysql/exist_infor');
+
 var change = require('../libs/change');
 
 var err,data,infor;
@@ -71,11 +77,15 @@ router.post('/login',function(req, res){
 })
 
 router.post('/sign_up',function(req, res){
-	console.log('sign up');
-	signUp(req.body.group, req.body.infor, function(result){
-		console.log(result);
+	addInfor(db,req.body.group, req.body.infor, function(result){
 		res.send(result);
 	});
+})
+
+router.post('/exist',function(req,res){
+	existInfor(db,req.body.username,function(result){
+		res.send(result);
+	})
 })
 
 module.exports = router;
