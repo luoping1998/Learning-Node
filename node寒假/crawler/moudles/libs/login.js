@@ -4,5 +4,13 @@ window.onload = function(){
 
 	$("#toLog").click(getInfor);
 
-	$("#web").click(signup($("web").val()));
+
+	$("#web").click(function(){
+		if(window.infor){
+			signup($("#web").val(),window.infor);
+		} else{
+			alert('您未登录！');
+		}
+	});
+
 }

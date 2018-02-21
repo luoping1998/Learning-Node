@@ -17,6 +17,7 @@ function getInfor(){
 			}else{
 				//获取信息 
 				window.infor = r;
+				console.log(typeof(window.infor));
 				$('#login').css('display','none');
 			}
 		},
