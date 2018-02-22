@@ -13,7 +13,6 @@ var getImg = function(callback){
 	};
 
 	request(options,function (err, res, body) {
-		console.log('crawl:'+body+'\n');
 		if(err){
 			callback('Server error!'+err);
 			return;
@@ -26,7 +25,6 @@ var getImg = function(callback){
 		}
 		var imgBuf = body.toString('base64');
 		imgBuf = "data:image/Gif;base64," + imgBuf;
-
 		callback(false, {
 	    	'session' : session,
 	    	'imgCode' : imgBuf

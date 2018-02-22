@@ -1,3 +1,11 @@
 #login{
 	background-color: pink;
 }
+
+#infor {
+	margin-top: 20px;
+	background-color: lightblue;
+	width: 300px;
+	height: 100px;
+	float: left;
+}

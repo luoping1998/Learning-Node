@@ -1,5 +1,5 @@
-function existInfor(db,username,callback){
-	var str = 'SELECT `id` FROM `freshtable` WHERE `stusID` = \''+username+'\'';
+function existInfor(db,atrr,value,callback){
+	var str = 'SELECT `id` FROM `freshtable` WHERE `'+atrr+'` = \''+value+'\'';
 	db.query(str,function(err,data){
 		if(err){
 			callback({

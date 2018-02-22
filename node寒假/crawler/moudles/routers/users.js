@@ -11,20 +11,10 @@ var getInfor = require('../users/getInfor');
 var addInfor = require('../mysql/add_infor');
 var existInfor = require('../mysql/exist_infor');
 
-var change = require('../libs/change');
+var change = require('../libs/users_lib/change');
 
 var err,data,infor;
 var session,username;
-
-//设置响应头
-router.all('*', function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*");
-    res.header("Access-Control-Allow-Headers", "X-Requested-With");
-    res.header("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS");
-    res.header("X-Powered-By",' 3.2.1')
-    res.header("Content-Type", "application/json;charset=utf-8");
-    next();
-});
 
 router.get('/vcode',function(req, res){
 	getImg(function(err,data){
@@ -32,7 +22,7 @@ router.get('/vcode',function(req, res){
 		var _data = null;
 		if(err){
 			_data = {
-				"err" : "server error"
+				"err" : err
 			}
 		} else{
 			_data = {
@@ -60,7 +50,6 @@ router.post('/login',function(req, res){
 				res.send(result);
 			}else{
 				getInfor(username,session,function(infor){
-					console.log(infor);
 					var _data = null;
 					if(err){
 						_data = {
@@ -77,13 +66,13 @@ router.post('/login',function(req, res){
 })
 
 router.post('/sign_up',function(req, res){
-	addInfor(db,req.body.group, req.body.infor, function(result){
+	addInfor(db,req.body.group,req.body.infor,req.body.contact, function(result){
 		res.send(result);
 	});
 })
 
 router.post('/exist',function(req,res){
-	existInfor(db,req.body.username,function(result){
+	existInfor(db,req.body.atrr,req.body.value,function(result){
 		res.send(result);
 	})
 })

@@ -5,10 +5,11 @@
 	<meta charset="utf-8"/>
 	<link rel="stylesheet" type="text/css" href="../style/login.css">
 	<script src="../libs/jquery-3.2.1.min.js"></script>
-	<script src="../libs/getCode.js"></script>
-	<script src="../libs/getInfor.js"></script>
-	<script src="../libs/signup.js"></script>
-	<script src="../libs/login.js"></script>
+	<script src="../libs/users_js/getCode.js"></script>
+	<script src="../libs/users_js/getInfor.js"></script>
+	<script src="../libs/users_js/exist.js"></script>
+	<script src="../libs/users_js/signup.js"></script>
+	<script src="../libs/users_js/login.js"></script>
 </head>
 <body>
 	<div id="login">
@@ -18,11 +19,18 @@
 		<img src="" id="codeImg"/>
 		<input type="button" id="toLog" value="登录">
 	</div>
-
-	<input type="button" value="iOS" id="ios">
-	<input type="button" value="Web" id="web">
-	<input type="button" value="Android" id="and">
-	<input type="button" value="Java后台" id="java">
 	
+	<div id="signup">
+		<input type="button" value="iOS" id="ios">
+		<input type="button" value="Web" id="web">
+		<input type="button" value="Android" id="and">
+		<input type="button" value="Java后台" id="java">
+	</div>
+	
+	<div id="infor">
+		手机号:	<input type="text" id="phone"><br/>
+		邮 箱：<input type="text" id="email"><br/>
+		自我介绍：<input type="text" id="lines">
+	</div>
 </body>
 </html>

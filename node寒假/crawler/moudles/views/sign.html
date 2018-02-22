@@ -1,14 +1,45 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>报名</title>
+	<title>西邮移动应用开发实验室管理员页面</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="../style/admin.css">
 	<script src="../libs/jquery-3.2.1.min.js"></script>
-	<script src="../libs/sign_up.js"></script>
+	<script src="../libs/admins_js/getinfors.js"></script>
+	<script src="../libs/admins_js/select.js"></script>
+	<script src="../libs/admins_js/admins.js"></script>
 </head>
 <body>
-	<input type="button" value="报名" id="and">
-	<input type="button" value="报名" id="ios">
-	<input type="button" value="报名" id="web">
-	<input type="button" value="报名" id="jav">
+<div class="big">
+	<div id="btn">
+		<button id="ck">查看纳新情况</button><br/>
+		<button id="gl">管理纳新情况</button>
+	</div>
+
+	<div id="view">
+		<button name="all">查看纳新报名情况</button>
+		<button name="and">Android组报名情况</button>
+		<button name="ios">iOS组报名情况</button>
+		<button name="web">Web组报名情况</button>
+		<button name="jav">Java后台组报名情况</button>
+
+		<select id="period">
+			<option value="1"> 全 部 </option>
+			<option> 未通过 </option>
+			<option>一面通过</option>
+			<option>二面通过</option>
+			<option>三面通过</option>
+			<option> 通 过 </option>		
+		</select>
+	</div>
+
+	<div id="admin" >
+		<button name="all">管理纳新报名情况</button>
+		<button name="and">Android组报名情况</button>
+		<button name="ios">iOS组报名情况</button>
+		<button name="web">Web组报名情况</button>
+		<button name="jav">Java后台组报名情况</button>
+	</div>
+</div>
 </body>
 </html>

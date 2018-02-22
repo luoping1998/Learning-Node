@@ -1,7 +1,9 @@
-function addInfor(db,group,infor,callback){
+function addInfor(db,group,infor,contact,callback){
 	var infor = JSON.parse(infor);
-	var str = 'INSERT INTO `freshtable` ( `stusID`, `name`, `college`, `major`, `class`, `grade`, `group`, `1_interview`, `2_interview`, `3_interview`) VALUES ( \''+infor.xh+'\',\''+infor.xm+'\',\'' +infor.xy+'\' , \''+infor.zy+'\',\''+infor.bj+'\', '+infor.nj+' ,\''+group+'\', 0 , 0 , 0 )';
+	var contact = JSON.parse(contact);
+	var str = 'INSERT INTO `freshtable` ( `stusID`, `name`, `sex` ,`college`, `major`, `class`, `grade`, `group`, `phone` ,`email` , `lines` , `interview`) VALUES ( \''+infor.xh+'\',\''+infor.xm+'\',\''+infor.xb +'\',\''+infor.xy+'\' , \''+infor.zy+'\',\''+infor.bj+'\', '+infor.nj+' ,\''+group+'\','+contact.phone+',\''+contact.email+'\','+'\''+contact.lines+'\', 0)';
 	db.query(str,function(err,data){
+		console.log(str);
 		if(err){
 			callback({
 				'error' : true,

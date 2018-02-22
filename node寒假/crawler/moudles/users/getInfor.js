@@ -20,23 +20,16 @@ var getInfor = function(username,session,callback){
 		if(!err){
 			var html = iconv.decode(body,'gb2312').toString();
 			var $ = cheerio.load(html);
-			
-			// var xh = $('#xh').text();				//学号
-			// var xm = $('#xm').text();				//姓名
-			// var xy = $('#lbl_xy').text();			//学院
-			// var zy = $('#lbl_zymc').text();			//专业
-			// var bj = $('#lbl_xzb').text();			//班级
-			// var nj = $('#lbl_dqszj').text();		//级
-
+		
 			infor = {
 				'error':false,
 				'xh' : $('#xh').text(),
 				'xm' : $('#xm').text(),
+				'xb' : $('#lbl_xb').text(),
 				'xy' : $('#lbl_xy').text(),
 				'zy' : $('#lbl_zymc').text(),
 				'bj' : $('#lbl_xzb').text(),
 				'nj' : $('#lbl_dqszj').text()
-				
 			}
 		}else{
 			infor = {
